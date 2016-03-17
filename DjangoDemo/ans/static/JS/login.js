@@ -4,13 +4,13 @@ $(document).ready(function(){
        logincompany=$("#company").val();
        loginID=$("#PersonId").val();
        $.ajax({
-          type:"POST",
+          type:"GET",
           url:"/insert_person/",
           data:{name:loginname, company:logincompany, PersonId:loginID},
           dataType:"json",
           success:function(data){
               if(data)
-                 self.location='main.html'
+                 alert(data.msg)
               else
                  alert("不允许重复答题")
           },

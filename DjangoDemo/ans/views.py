@@ -14,9 +14,9 @@ def login2(request):
 
 
 def insert_person(request):
-    loginname = request.POST.get("loginname", None)
-    logincompany = request.POST.get("logincompany", None)
-    loginid = request.POST.get("PersonId",None)
- #   p = Person(name=loginname, company=logincompany, personId=loginid)
- #   p.save()
-    return success
+    loginname = request.GET.get("name", None)
+    logincompany = request.GET.get("company", None)
+    loginid = request.POST.get("PersonId", None)
+    p = Person(addTime=now(), updateTime=now(), name='name', company='hha', personId='123', score=10, isDelete=0)
+    p.save()
+    return HttpResponse(json.dumps({"msg": "success"}))
