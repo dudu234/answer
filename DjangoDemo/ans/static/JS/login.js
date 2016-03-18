@@ -10,7 +10,7 @@ $(document).ready(function(){
           dataType:"json",
           success:function(data){
               if(data)
-                 alert(data.msg)
+                 self.location='login2?id='+data.name ;
               else
                  alert("不允许重复答题")
           },

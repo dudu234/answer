@@ -16,7 +16,10 @@ def login2(request):
 def insert_person(request):
     loginname = request.GET.get("name", None)
     logincompany = request.GET.get("company", None)
-    loginid = request.POST.get("PersonId", None)
-    p = Person(addTime=now(), updateTime=now(), name='name', company='hha', personId='123', score=10, isDelete=0)
+    loginid = request.GET.get("PersonId", None)
+    p = Person(name=loginname, company=logincompany, personId=loginid, score=0, isDelete=0)
     p.save()
-    return HttpResponse(json.dumps({"msg": "success"}))
+    response = HttpResponse(json.dumps({"id": p.id, "name": p.name}))
+    response.set_cookie("id", p.id, 3600)
+    response.set_cookie("name", p.name, 3600)
+    return response
